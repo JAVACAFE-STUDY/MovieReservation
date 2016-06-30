@@ -8,3 +8,6 @@ Sejong Park <devsejong@gmail.com>
 
 TDD를 활용, 성장하는 객체지향 프로그램을 만들어 나갑니다. 이 프로젝트는 자바카페에서 스터디를 목적으로 생성하였습니다.
 
+== e2eTest
+
+http://chromedriver.storage.googleapis.com/index.html?path=2.22[셀레늄 크롬 드라이버]를 사용한다.
