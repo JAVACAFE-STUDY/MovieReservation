@@ -1,9 +1,10 @@
-package net.chandol.study;
+package net.chandol.study.e2e;
 
 import org.fluentlenium.adapter.FluentTest;
 import org.fluentlenium.adapter.util.SharedDriver;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.test.context.ActiveProfiles;
 
 import java.io.File;
 
@@ -13,7 +14,7 @@ public class CustomFluentTest extends FluentTest {
     private static WebDriver chromeWebDriver;
     {
         String classpath  = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-        String chromeDriverPath = classpath + "bin"+ File.separator + "chromedriver.exe";
+        String chromeDriverPath = classpath + "bin"+ File.separator + "chromedriver";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
         chromeWebDriver = new ChromeDriver();
     }

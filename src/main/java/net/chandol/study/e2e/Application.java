@@ -1,4 +1,4 @@
-package net.chandol.study;
+package net.chandol.study.e2e;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
