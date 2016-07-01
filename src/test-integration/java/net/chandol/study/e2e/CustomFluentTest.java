@@ -7,7 +7,6 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.context.SpringBootTest.WebEnvironment;
 import org.springframework.core.env.Environment;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.TestContext;
 import org.springframework.test.context.TestContextManager;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -17,13 +16,12 @@ import java.util.Arrays;
 
 
 @RunWith(SpringRunner.class)
-@ActiveProfiles("integration-test")
 @SpringBootTest(webEnvironment= WebEnvironment.RANDOM_PORT)
 public class CustomFluentTest extends ConditioalStartWebDriverFluentTest {
 
     @Override
     public boolean checkFluentTestRunnable() {
-        return hasProfile("integration-test");
+        return !hasProfile("skip-integration-test");
     }
 
     private boolean hasProfile(String profile) {
