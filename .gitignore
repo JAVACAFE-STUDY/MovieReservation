@@ -124,9 +124,3 @@ buildNumber.properties
 
 .idea/
 *.iml
-
-built
-bower_components
-node_modules
-node
-*.log

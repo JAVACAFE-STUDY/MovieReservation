@@ -63,24 +63,16 @@
             <scope>test</scope>
         </dependency>
 
-
         <dependency>
-            <groupId>org.assertj</groupId>
-            <artifactId>assertj-core</artifactId>
-            <version>1.7.0</version>
+            <groupId>org.fluentlenium</groupId>
+            <artifactId>fluentlenium-core</artifactId>
+            <version>0.11.0</version>
             <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-chrome-driver</artifactId>
             <version>2.53.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>org.fluentlenium</groupId>
-            <artifactId>fluentlenium-core</artifactId>
-            <version>0.11.0</version>
             <scope>test</scope>
         </dependency>
 
@@ -124,7 +116,7 @@
                         </goals>
                         <configuration>
                             <sources>
-                                <source>src/test-e2e/java</source>
+                                <source>src/test-integration/java</source>
                             </sources>
                         </configuration>
                     </execution>
@@ -137,7 +129,7 @@
                         <configuration>
                             <resources>
                                 <resource>
-                                    <directory>src/test-e2e/resources</directory>
+                                    <directory>src/test-integration/resources</directory>
                                 </resource>
                             </resources>
                         </configuration>

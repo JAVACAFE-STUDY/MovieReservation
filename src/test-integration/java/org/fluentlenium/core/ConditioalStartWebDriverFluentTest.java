@@ -13,6 +13,9 @@ import org.openqa.selenium.WebDriver;
 
 import static org.fluentlenium.adapter.util.SharedDriverHelper.*;
 
+/**
+ *
+ */
 @SharedDriver(type = SharedType.ONCE)
 public class ConditioalStartWebDriverFluentTest extends FluentAdapter {
     private static WebDriver sharedDriver;
@@ -24,9 +27,10 @@ public class ConditioalStartWebDriverFluentTest extends FluentAdapter {
     public TestRule watchman = new TestWatcher() {
         @Override
         public void starting(Description description) {
-            if(!checkFluentTestRunnable()){
+            // 테스팅 환경에 따라서 통합 테스트가 불가능한 경우도 있다.
+            // 이 경우에는 테스트환경을 초기화 하지 않도록 설정이 필요하다.
+            if(!checkFluentTestRunnable())
                 return;
-            }
 
             super.starting(description);
             if (isSharedDriverOnce(description.getTestClass())) {

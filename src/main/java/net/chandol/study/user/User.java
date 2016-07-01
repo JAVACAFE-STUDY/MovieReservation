@@ -1,4 +1,4 @@
-package net.chandol.study.e2e.user;
+package net.chandol.study.user;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
