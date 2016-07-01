@@ -57,7 +57,7 @@ public abstract class CustomFluentTest extends ConditioalStartWebDriverFluentTes
     @Override
     public WebDriver getDefaultDriver() {
         String classpath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
-        String chromeDriverPath = classpath + "bin" + File.separator + "chromedriver.exe";
+        String chromeDriverPath = classpath + "bin" + File.separator + "chromedriver";
         System.setProperty("webdriver.chrome.driver", chromeDriverPath);
 
         return new ChromeDriver();
