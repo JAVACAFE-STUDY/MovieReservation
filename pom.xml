@@ -73,31 +73,10 @@
 
     </dependencies>
 
-    <profiles>
-        <profile>
-            <id>all-tests</id>
-            <properties>
-                <build.profile.id>all-tests</build.profile.id>
-                <skip.integration.tests>false</skip.integration.tests>
-                <skip.unit.tests>false</skip.unit.tests>
-            </properties>
-        </profile>
-        <profile>
-            <id>dev</id>
-        </profile>
-        <profile>
-            <id>integration-tests</id>
-            <properties>
-                <build.profile.id>integration-test</build.profile.id>
-                <skip.integration.tests>false</skip.integration.tests>
-                <skip.unit.tests>true</skip.unit.tests>
-            </properties>
-        </profile>
-    </profiles>
-
     <build>
-        <!--e2e테스트 폴더를 분리.-->
         <plugins>
+
+            <!-- integrationTest 분리-->
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>build-helper-maven-plugin</artifactId>
@@ -131,7 +110,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--// e2e테스트 폴더를 분리.-->
+
 
             <plugin>
                 <groupId>org.springframework.boot</groupId>
