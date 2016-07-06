@@ -1,0 +1,61 @@
+= 뼈대잡기
+Sejong Park <devsejong@gmail.com>
+:imagesDir: 01.뼈대잡기
+
+이전 Overview의 기술 스택을 뼈대를 잡는다. 샘플 페이지를 구성하며 E2E환경까지 구성하는 것을 최종 목표로 한다.
+
+== 스프링 설정
+
+https://start.spring.io/[스프링 이니셜라이져]를 사용, 프로젝트의 뼈대를 잡아주었다.
+
+image::01.뼈대잡기-ef36a.png[]
+
+== 화면 뼈대잡기
+
+http://getbootstrap.com/getting-started/[부트스트랩]을 사용하여 필요한 뼈대를 기본적으로 구성하였다. CSS와 JS는 CDN을 활용하여 프로젝트가 무거워지는것을 방지하였다.
+
+[source, html]
+----
+<!DOCTYPE html>
+<html>
+<head lang="ko">
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Hello World!</title>
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+</head>
+<body>
+
+<h1>Hello, world!</h1>
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</body>
+</html>
+----
+
+== 웹페이지 정상작동 확인하기
+
+컨트롤러를 추가하여 화면이 정상적으로 동작하는지 확인하였다.
+
+[source, java]
+----
+@Controller
+public class SampleController {
+
+    @GetMapping("/index")
+    public String index(){
+        return "index";
+    }
+}
+----
+
+image::01.뼈대잡기-8fba7.png[]
+
+== e2e 테스트 구성하기
+
+e2e테스트는 셀레늄을 활용한다.
