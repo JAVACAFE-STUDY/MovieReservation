@@ -63,3 +63,42 @@ integration test는 셀레늄을 사용하며 http://www.fluentlenium.org/ 를 �
 integration test를 분리하여 관리하길 원했기 때문에, 기존의 maven 구조에서 test-integration을 추가로 설정하였다.
 또한, integraion test를 경우에 따라 실행하지 않도록 스프링 프로파일을 활용하여 테스트 스킵여부를 설정할 수 있도록 만들었다.
 
+pom.xml에서 아래와 같이 프로젝트 폴더가 추가되도록 설정하였다.
+
+[source, xml]
+----
+<!-- integrationTest 분리-->
+<plugin>
+    <groupId>org.codehaus.mojo</groupId>
+    <artifactId>build-helper-maven-plugin</artifactId>
+    <version>1.8</version>
+    <executions>
+        <execution>
+            <id>add-test-source</id>
+            <phase>generate-sources</phase>
+            <goals>
+                <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+                <sources>
+                    <source>src/test-integration/java</source>
+                </sources>
+            </configuration>
+        </execution>
+        <execution>
+            <id>add-test-resource</id>
+            <phase>generate-resources</phase>
+            <goals>
+                <goal>add-test-resource</goal>
+            </goals>
+            <configuration>
+                <resources>
+                    <resource>
+                        <directory>src/test-integration/resources</directory>
+                    </resource>
+                </resources>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>
+----
