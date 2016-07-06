@@ -56,6 +56,10 @@ public class SampleController {
 
 image::01.뼈대잡기-8fba7.png[]
 
-== e2e 테스트 구성하기
+== integration test 구성하기
 
-e2e테스트는 셀레늄을 활용한다.
+integration test는 셀레늄을 사용하며 http://www.fluentlenium.org/ 를 활용하여 테스트 편의성을 높이도록 한다.
+
+integration test를 분리하여 관리하길 원했기 때문에, 기존의 maven 구조에서 test-integration을 추가로 설정하였다.
+또한, integraion test를 경우에 따라 실행하지 않도록 스프링 프로파일을 활용하여 테스트 스킵여부를 설정할 수 있도록 만들었다.
+
