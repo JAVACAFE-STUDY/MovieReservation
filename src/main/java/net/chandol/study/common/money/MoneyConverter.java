@@ -13,6 +13,6 @@ public class MoneyConverter implements AttributeConverter<Money, Integer>{
 
     @Override
     public Money convertToEntityAttribute(Integer value) {
-        return new Money(value);
+        return Money.of(value);
     }
 }

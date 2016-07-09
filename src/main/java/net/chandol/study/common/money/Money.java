@@ -2,7 +2,7 @@ package net.chandol.study.common.money;
 
 import lombok.Value;
 
-@Value
+@Value(staticConstructor = "of")
 public class Money {
     private int value;
 
