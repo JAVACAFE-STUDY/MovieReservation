@@ -1,6 +1,6 @@
 = 뼈대잡기
 Sejong Park <devsejong@gmail.com>
-:imagesDir: asset/02.뼈대잡기
+:imagesDir: 02.뼈대잡기
 
 이전 Overview의 기술 스택을 뼈대를 잡는다. 샘플 페이지를 구성하며 E2E환경까지 구성하는 것을 최종 목표로 한다.
 

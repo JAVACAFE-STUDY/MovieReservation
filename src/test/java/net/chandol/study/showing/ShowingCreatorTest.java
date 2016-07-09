@@ -19,9 +19,9 @@ import static org.junit.Assert.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class ShowingCreatorServiceTest {
+public class ShowingCreatorTest {
     @Autowired DummyDataGenerator dummyDataGenerator;
-    @Autowired ShowingCreatorService showingCreatorService;
+    @Autowired ShowingCreator showingCreator;
 
     private Map<String, Theater> theaterMap;
     private Map<String, Movie> movieMap;
@@ -36,14 +36,12 @@ public class ShowingCreatorServiceTest {
     public void create() throws Exception {
         // given
         Theater theater = theaterMap.get("서현점");
-        System.out.println(theater);
-
         Movie movie = movieMap.get("센과 치히로의 행방불명");
 
         LocalDateTime startTime = LocalDateTime.of(2016, 7, 9, 4, 20);
 
         // when
-        Showing showing = showingCreatorService.create(theater, movie, startTime, Money.of(3000));
+        Showing showing = showingCreator.create(theater, movie, startTime, Money.of(3000));
 
         // then
         assertThat(showing.getPrice(), is(Money.of(3000)));
@@ -53,4 +51,5 @@ public class ShowingCreatorServiceTest {
 
         assertThat(theater.getSeats().size(), is(theater.getSeats().size()));
     }
+
 }

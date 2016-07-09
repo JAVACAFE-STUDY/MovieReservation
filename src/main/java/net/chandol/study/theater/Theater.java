@@ -19,8 +19,8 @@ public class Theater {
     private String name;
 
     @ElementCollection
-    @CollectionTable(name = "theater_seat", joinColumns = @JoinColumn(name = "id"))
-    @OrderColumn(name = "seat_idx")
+    @CollectionTable(name = "THEATER_SEAT", joinColumns = @JoinColumn(name = "id"))
+    @OrderColumn(name = "SEAT_IDX")
     private List<Seat> seats = new ArrayList<>();
 
     public Theater(String name, int columnSize, int rowSize) {

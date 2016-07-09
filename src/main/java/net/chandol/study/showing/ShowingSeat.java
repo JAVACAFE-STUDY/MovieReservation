@@ -16,8 +16,8 @@ public class ShowingSeat {
     private Showing showing;
     @Embedded
     @AttributeOverrides({
-            @AttributeOverride(name = "row", column = @Column(name = "seat_row")),
-            @AttributeOverride(name = "column", column = @Column(name = "seat_column"))
+            @AttributeOverride(name = "row", column = @Column(name = "SEAT_ROW")),
+            @AttributeOverride(name = "column", column = @Column(name = "SEAT_COLUMN"))
     })
     private Seat seat;
 
