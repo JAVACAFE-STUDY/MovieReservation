@@ -59,6 +59,6 @@ public class Theater {
 
 @Repository
 interface TheaterRepsitory extends JpaRepository<Theater, Long> {
-
+    Theater findByName(String name);
 }
 

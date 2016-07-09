@@ -9,7 +9,7 @@ public class MovieService {
     @Autowired
     MovieRepository repository;
 
-    public Movie createMovie(MovieCreateRequest request) {
+    public Movie create(MovieCreateRequest request) {
         Movie movie = new Movie(
                 request.getName(),
                 request.getDescription(),
@@ -18,5 +18,13 @@ public class MovieService {
         );
 
         return repository.save(movie);
+    }
+
+    public Movie get(long id){
+        return repository.getOne(id);
+    }
+
+    public Movie findByName(String name){
+        return repository.findByName(name);
     }
 }
