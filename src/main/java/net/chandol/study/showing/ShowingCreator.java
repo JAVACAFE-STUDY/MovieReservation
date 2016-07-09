@@ -11,7 +11,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class ShowingCreatorService {
+public class ShowingCreator {
     @Autowired ShowingRepository showingRepository;
     @Autowired ShowingSeatRepository seatRepository;
 
