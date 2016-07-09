@@ -1,6 +1,6 @@
 = 상영 구현해보기
 Sejong Park <devsejong@gmail.com>
-:imagesDir: 03.상영(Showing)
+:imagesDir: 03.상영
 :toc:
 
 
