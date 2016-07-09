@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import static net.chandol.study._config.dummy.DummyDataCreator.getMovieCreateRequests;
+import static net.chandol.study._config.dummy.DummyDataGenerator.getMovieCreateRequests;
 import static net.chandol.study.movie.MovieType.NORMAL;
 import static net.chandol.study.movie.MovieType._3D;
 import static org.hamcrest.CoreMatchers.*;
@@ -25,7 +25,7 @@ public class MovieServiceTest {
         MovieCreateRequest request = getMovieCreateRequests().get("WALL-E");
 
         //when
-        Movie movie = service.createMovie(request);
+        Movie movie = service.create(request);
 
         //then
         assertThat(movie.getName(), is("WALL-E"));

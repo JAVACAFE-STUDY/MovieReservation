@@ -21,7 +21,7 @@ public class TheaterServiceTest {
     public void createTheater() throws Exception {
         //given
         //when
-        Theater theater = theaterService.createTheater(new TheaterCreateRequest("서현점", 20, 10));
+        Theater theater = theaterService.create(new TheaterCreateRequest("서현점", 20, 10));
         //then
         assertThat(theater.getName(), is("서현점"));
         assertThat(theater.getSeats().size(), is(200));

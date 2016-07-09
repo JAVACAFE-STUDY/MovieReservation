@@ -2,6 +2,8 @@ package net.chandol.study.movie;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -34,4 +36,10 @@ public class Movie {
         this.runningTime = runningTime;
         this.availableMovieType = availableMovieType;
     }
+}
+
+
+@Repository
+interface MovieRepository extends JpaRepository<Movie, Long> {
+    Movie findByName(String name);
 }

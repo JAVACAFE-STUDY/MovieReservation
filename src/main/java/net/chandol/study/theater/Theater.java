@@ -1,5 +1,8 @@
 package net.chandol.study.theater;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -52,5 +55,10 @@ public class Theater {
         else
             throw new IllegalArgumentException("문자변경 실패");
     }
+}
+
+@Repository
+interface TheaterRepsitory extends JpaRepository<Theater, Long> {
+    Theater findByName(String name);
 }
 
