@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class TheaterService {
-    @Autowired
-    TheaterRepsitory repository;
+    @Autowired TheaterRepsitory repository;
 
     // 영화관 정보를 생성합니다.
     // 영화관의 좌석은 우선 x,y형태로 생성하며 x는 숫자로 y는 알파벳으로 표기합니다.
@@ -18,11 +17,11 @@ public class TheaterService {
         return theater;
     }
 
-    public Theater get(long id){
+    public Theater get(long id) {
         return repository.getOne(id);
     }
 
-    public Theater findByName(String name){
+    public Theater findByName(String name) {
         return repository.findByName(name);
     }
 }

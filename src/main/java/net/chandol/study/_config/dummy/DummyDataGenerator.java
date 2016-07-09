@@ -16,10 +16,8 @@ import static java.util.stream.Collectors.toMap;
 import static net.chandol.study.movie.MovieType.*;
 
 public class DummyDataGenerator {
-    @Autowired
-    MovieService movieService;
-    @Autowired
-    TheaterService theaterService;
+    @Autowired MovieService movieService;
+    @Autowired TheaterService theaterService;
 
     public Map<String, Movie> persistMovie() {
         return getMovieCreateRequests().values().stream()

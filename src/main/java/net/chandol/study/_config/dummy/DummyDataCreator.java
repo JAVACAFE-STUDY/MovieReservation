@@ -16,7 +16,7 @@ import javax.annotation.PostConstruct;
 public class DummyDataCreator {
 
     @Bean
-    DummyDataGenerator dummyDataService(){
+    DummyDataGenerator dummyDataService() {
         return new DummyDataGenerator();
     }
 
@@ -24,7 +24,7 @@ public class DummyDataCreator {
     DummyDataGenerator service;
 
     @PostConstruct
-    public void initData(){
+    public void initData() {
         service.persistMovie();
         service.persistTheater();
     }

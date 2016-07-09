@@ -29,7 +29,7 @@ public class ConditioalStartWebDriverFluentTest extends FluentAdapter {
         public void starting(Description description) {
             // 테스팅 환경에 따라서 통합 테스트가 불가능한 경우도 있다.
             // 이 경우에는 테스트환경을 초기화 하지 않도록 설정이 필요하다.
-            if(!checkFluentTestRunnable())
+            if (!checkFluentTestRunnable())
                 return;
 
             super.starting(description);
@@ -127,7 +127,7 @@ public class ConditioalStartWebDriverFluentTest extends FluentAdapter {
     }
 
 
-    public boolean checkFluentTestRunnable(){
+    public boolean checkFluentTestRunnable() {
         return true;
     }
 

@@ -6,8 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class MovieService {
-    @Autowired
-    MovieRepository repository;
+    @Autowired MovieRepository repository;
 
     public Movie create(MovieCreateRequest request) {
         Movie movie = new Movie(
@@ -20,11 +19,11 @@ public class MovieService {
         return repository.save(movie);
     }
 
-    public Movie get(long id){
+    public Movie get(long id) {
         return repository.getOne(id);
     }
 
-    public Movie findByName(String name){
+    public Movie findByName(String name) {
         return repository.findByName(name);
     }
 }

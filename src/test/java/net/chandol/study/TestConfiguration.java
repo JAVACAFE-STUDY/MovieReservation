@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Profile;
 @Profile("!integration-test")
 public class TestConfiguration {
     @Bean
-    DummyDataGenerator dummyDataService(){
+    DummyDataGenerator dummyDataService() {
         return new DummyDataGenerator();
     }
 }

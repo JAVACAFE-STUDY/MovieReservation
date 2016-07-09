@@ -1,9 +1,5 @@
 package net.chandol.study.movie.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Value;
 import net.chandol.study.movie.MovieType;
 
 import java.util.Arrays;

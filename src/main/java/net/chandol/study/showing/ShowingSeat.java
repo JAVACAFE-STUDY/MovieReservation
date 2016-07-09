@@ -30,7 +30,7 @@ public class ShowingSeat {
         this.state = State.VACANCY;
     }
 
-    private void setShowing(Showing showing){
+    private void setShowing(Showing showing) {
         this.showing = showing;
         showing.addShowingSeat(this);
     }

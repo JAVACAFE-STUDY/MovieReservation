@@ -13,7 +13,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Getter @EqualsAndHashCode
+@Getter
+@EqualsAndHashCode
 public class Showing {
 
     @Id
@@ -29,7 +30,8 @@ public class Showing {
     @OneToMany(mappedBy = "showing")
     private List<ShowingSeat> showingSeats = new ArrayList<>();
 
-    protected Showing() {}
+    protected Showing() {
+    }
 
     // 에그리게이터이지만, 하위 객체가 엔티티인 경우는 어떻게 처리해야 할까??
     public Showing(Theater theater, Movie movie, LocalDateTime startTime, Money price) {
@@ -39,9 +41,10 @@ public class Showing {
         this.price = price;
     }
 
-    void addShowingSeat(ShowingSeat seat){
+    void addShowingSeat(ShowingSeat seat) {
         this.showingSeats.add(seat);
     }
 }
 
-interface ShowingRepository extends JpaRepository<Showing, Long>{}
+interface ShowingRepository extends JpaRepository<Showing, Long> {
+}

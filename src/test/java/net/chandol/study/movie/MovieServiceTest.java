@@ -16,8 +16,7 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class MovieServiceTest {
-    @Autowired
-    MovieService service;
+    @Autowired MovieService service;
 
     @Test
     public void createMovie() throws Exception {

@@ -20,15 +20,14 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class ShowingCreatorServiceTest {
-    @Autowired
-    DummyDataGenerator dummyDataGenerator;
+    @Autowired DummyDataGenerator dummyDataGenerator;
     @Autowired ShowingCreatorService showingCreatorService;
 
     private Map<String, Theater> theaterMap;
     private Map<String, Movie> movieMap;
 
     @Before
-    public void initData(){
+    public void initData() {
         theaterMap = dummyDataGenerator.persistTheater();
         movieMap = dummyDataGenerator.persistMovie();
     }
@@ -37,6 +36,8 @@ public class ShowingCreatorServiceTest {
     public void create() throws Exception {
         // given
         Theater theater = theaterMap.get("서현점");
+        System.out.println(theater);
+
         Movie movie = movieMap.get("센과 치히로의 행방불명");
 
         LocalDateTime startTime = LocalDateTime.of(2016, 7, 9, 4, 20);

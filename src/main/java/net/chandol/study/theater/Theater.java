@@ -1,14 +1,17 @@
 package net.chandol.study.theater;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Entity
+@Getter
+@EqualsAndHashCode
 public class Theater {
     @Id
     @GeneratedValue
@@ -24,14 +27,6 @@ public class Theater {
         //검증로직 생략
         this.name = name;
         this.seats = seatsGenerator(columnSize, rowSize);
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public List<Seat> getSeats() {
-        return Collections.unmodifiableList(seats);
     }
 
     // 좌석을 생성하여 리스트를 반환합니다.

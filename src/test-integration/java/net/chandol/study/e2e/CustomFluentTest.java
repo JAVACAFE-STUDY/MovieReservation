@@ -57,7 +57,7 @@ public abstract class CustomFluentTest extends ConditioalStartWebDriverFluentTes
     @Override
     public WebDriver getDefaultDriver() {
         // 윈도환경에서만 exe파일이 실행되도록 설정한다.
-        String chromeDriverFileName = isWindows()?"chromedriver":"chromedriver";
+        String chromeDriverFileName = isWindows() ? "chromedriver" : "chromedriver";
 
         String classpath = getClass().getProtectionDomain().getCodeSource().getLocation().getPath();
         String chromeDriverPath = classpath + "bin" + File.separator + chromeDriverFileName;
@@ -66,7 +66,7 @@ public abstract class CustomFluentTest extends ConditioalStartWebDriverFluentTes
         return new ChromeDriver();
     }
 
-    private boolean isWindows(){
+    private boolean isWindows() {
         String osName = System.getProperty("os.name").toLowerCase();
         return osName.contains("windows");
     }

@@ -12,10 +12,8 @@ import java.util.stream.Collectors;
 
 @Service
 public class ShowingCreatorService {
-    @Autowired
-    ShowingRepository showingRepository;
-    @Autowired
-    ShowingSeatRepository seatRepository;
+    @Autowired ShowingRepository showingRepository;
+    @Autowired ShowingSeatRepository seatRepository;
 
     // JPA와 연동되는 부분이라서 깔끔하게 만들긴 쉽지가 않음. ㅠㅠㅠ
     // 요건 어떻게 풀어나가야 될까요??

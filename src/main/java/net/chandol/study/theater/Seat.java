@@ -1,18 +1,22 @@
 package net.chandol.study.theater;
 
-import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.experimental.Tolerate;
 
 import javax.persistence.Embeddable;
 
 @Embeddable
 @Getter
-@AllArgsConstructor
+@EqualsAndHashCode
 public class Seat {
     private Character row;
     private Integer column;
 
-    @Tolerate
-    protected Seat() {}
+    protected Seat() {
+    }
+
+    public Seat(Character row, Integer column) {
+        this.row = row;
+        this.column = column;
+    }
 }

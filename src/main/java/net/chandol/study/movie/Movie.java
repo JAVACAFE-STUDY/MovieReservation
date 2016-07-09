@@ -21,14 +21,8 @@ public class Movie {
     private String description;
     private int runningTime;
 
-    private Movie(){}
-
-    @ElementCollection
-    @CollectionTable(
-            name = "MOVIE_AVAILABLE_TYPE",
-            joinColumns = @JoinColumn(name = "movie_id")
-    )
-    private Set<MovieType> availableMovieType;
+    protected Movie() {
+    }
 
     Movie(String name, String description, int runningTime, Set<MovieType> availableMovieType) {
         this.name = name;
@@ -36,6 +30,13 @@ public class Movie {
         this.runningTime = runningTime;
         this.availableMovieType = availableMovieType;
     }
+
+    @ElementCollection
+    @CollectionTable(
+            name = "MOVIE_AVAILABLE_TYPE",
+            joinColumns = @JoinColumn(name = "movie_id")
+    )
+    private Set<MovieType> availableMovieType;
 }
 
 
