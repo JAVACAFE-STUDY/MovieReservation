@@ -39,7 +39,6 @@ public class Movie {
 }
 
 
-
 @Repository
 interface MovieRepository extends JpaRepository<Movie, Long> {
     Movie findByName(String name);
