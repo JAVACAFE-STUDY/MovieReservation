@@ -1,4 +1,4 @@
-package net.chandol.study.movie.helper;
+package net.chandol.study.movie.support;
 
 import net.chandol.study.movie.MovieType;
 

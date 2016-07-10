@@ -1,4 +1,4 @@
-package net.chandol.study.common.date;
+package net.chandol.study.common.support;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

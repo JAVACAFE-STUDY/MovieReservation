@@ -1,4 +1,6 @@
-package net.chandol.study.common.money;
+package net.chandol.study.common.support;
+
+import net.chandol.study.common.money.Money;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
