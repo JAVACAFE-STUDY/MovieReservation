@@ -1,34 +1,41 @@
 package net.chandol.study.showing.price.pricerule;
 
 import net.chandol.study.common.money.Money;
-import net.chandol.study.movie.Movie;
 import net.chandol.study.movie.MovieType;
-import net.chandol.study.showing.price.PriceRule;
-import net.chandol.study.theater.Theater;
 import org.junit.Test;
 
+import java.time.DayOfWeek;
 import java.time.LocalDateTime;
 
+import static java.time.DayOfWeek.*;
+import static java.time.temporal.ChronoUnit.HOURS;
+import static net.chandol.study.common.MoneyMatcher.moneyIs;
+import static net.chandol.study.movie.MovieType.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 public class DefaultPriceRuleTest {
 
     @Test
     public void evaluate() throws Exception {
-        //given
-        PriceRule priceRule = new DefaultPriceRule();
-        Movie movie = dummyMovie(MovieType.IMAX);
-        LocalDateTime startTime = LocalDateTime.of(2016, 7, 7, 20, 20);
+        ruleEvaluate(_2D, MONDAY, 2, 7000);
+        ruleEvaluate(_2D, MONDAY, 4, 6000);
+        ruleEvaluate(_2D, MONDAY, 18, 8000);
+        ruleEvaluate(_2D, MONDAY, 23, 7000);
 
-        //when
-        Money price = priceRule.evaluate(
-                Money.of(0), theater, movie, startTime
-        );
-
-        //then
-        assertThat(price, is(7000));
+        ruleEvaluate(IMAX, MONDAY, 5, 10000);
+        ruleEvaluate(_4DX, MONDAY, 1, 11000);
+        ruleEvaluate(_3D, FRIDAY, 3, 9000);
+        ruleEvaluate(_2D, SATURDAY, 19, 10000);
+        ruleEvaluate(_3D, SUNDAY, 11, 11000);
     }
 
-    public Movie dummyMovie(MovieType movieType){
-        return new Movie("test", "test", 100, );
+    private void ruleEvaluate(MovieType movieType, DayOfWeek week, int hour, int expected){
+        //given
+        DefaultPriceRule rule = new DefaultPriceRule();
+        LocalDateTime dateTime = LocalDateTime.now().truncatedTo(HOURS).withHour(hour).with(week);
+        //when
+        Money money = rule.evaluate(dateTime, movieType);
+        //then
+        assertThat(money, moneyIs(expected));
     }
 }

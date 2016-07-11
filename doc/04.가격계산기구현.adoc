@@ -57,12 +57,12 @@ image::03.상영(Showing)-024f1.png[]
 ** 2D:7000 3D:9000 IMAX:11000 4DX:11000
 주말(금-일)::
 * 조조(05:00 - 9:00)
-** 2D:6000 3D:8000 IMAX:10000 4DX:10000
+** 2D:7000 3D:9000 IMAX:11000 4DX:11000
 * 주간(9:00 - 17:00)
 ** 2D:9000 3D:11000 IMAX:12000 4DX:12000
-* 프라임(10:00 - 17:00)
-** 2D:10000 3D:12000 IMAX:15000 4DX:15000
-* 야간(10:00 - 22:00)
+* 프라임(17:00 - 23:00)
+** 2D:10000 3D:12000 IMAX:14000 4DX:14000
+* 야간(23:00 - 04:00)
 ** 2D:7000 3D:9000 IMAX:11000 4DX:11000
 
 테스트로 이를 옮겨보도록 하자.
@@ -105,4 +105,24 @@ public class DefaultPriceRule implements PriceRule {
 }
 ----
 
-`상영`을 생성시 영화타입을 빼먹었다는 것을 뒤늦게 알아차렸다. `영화`는 단지 상영가능한 타입만을 가지고 있다. Integration 테스트가 없기 때문에 한눈에 동작하는 코드를 볼 수 없어 발생한 문제가 아닐까? 다음 챕터에서는 이러한일이 생기지 않도록 화면도 함께 만들어나가도록 하자!
+`상영`을 생성시 영화타입을 빼먹었다는 것을 뒤늦게 알아차렸다. `영화`는 단지 상영가능한 타입만을 가지고 있다. Integration 테스트가 없어 한눈에 동작하는 모습을 보기 힘들다. 다음 챕터에서는 이러한 일이 생기지 않도록 화면도 함께 만들어나가도록 하자!
+
+=== 다시 시작
+
+급하게 패치 후 다시 테스트코드를 정비하였다.
+
+[source, java]
+----
+@Test
+public void evaluate() throws Exception {
+    // given
+    DefaultPriceRule rule = new DefaultPriceRule();
+    LocalDateTime startTime = LocalDateTime.of(2016, 7, 10, 10, 0);
+
+    // when
+    Money money = rule.evaluate(_2D, startTime);
+
+    // then
+    assertThat(money.getValue(), is(7000));
+}
+----
