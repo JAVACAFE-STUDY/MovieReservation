@@ -17,8 +17,8 @@ public class ShowingCreator {
 
     // JPA와 연동되는 부분이라서 깔끔하게 만들긴 쉽지가 않음. ㅠㅠㅠ
     // 요건 어떻게 풀어나가야 될까요??
-    public Showing create(Theater theater, Movie movie, LocalDateTime startTime, Money price) {
-        Showing showing = new Showing(theater, movie, startTime, price);
+    public Showing create(Theater theater, Movie movie, LocalDateTime showingTime, Money price) {
+        Showing showing = new Showing(theater, movie, showingTime, price);
 
         // 상영을 우선 저장해야 함.
         showingRepository.save(showing);
