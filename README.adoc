@@ -32,3 +32,7 @@ integration test를 위해서 셀레늄을 사용합니다. 이 테스트를 실
 
 Integration Test를 사용할 수 없거나 스킵하길 원하신다면, 스프링 프로파일로 `skip-integration-test`을 추가하여 주십시오.
 메이븐 빌드시에는 `-Dspring.profiles.active=skip-integration-test`와 같이 설정하면 Integration 테스트를 건너뛸 수 있습니다.
+
+== 문서
+
+프로젝트 최상단 `/doc`에서 확인할 수 있습니다.
