@@ -4,6 +4,7 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import net.chandol.study.common.money.Money;
 import net.chandol.study.movie.Movie;
+import net.chandol.study.movie.MovieType;
 import net.chandol.study.theater.Theater;
 import org.springframework.data.jpa.repository.JpaRepository;
 
@@ -25,6 +26,7 @@ public class Showing {
     @ManyToOne
     private Theater theater;
     private LocalDateTime startTime;
+    private MovieType movieType;
     private Money price;
 
     @OneToMany(mappedBy = "showing")
@@ -34,9 +36,10 @@ public class Showing {
     }
 
     // 에그리게이터이지만, 하위 객체가 엔티티인 경우는 어떻게 처리해야 할까??
-    public Showing(Theater theater, Movie movie, LocalDateTime startTime, Money price) {
+    public Showing(Theater theater, Movie movie, MovieType movieType, LocalDateTime startTime, Money price) {
         this.movie = movie;
         this.theater = theater;
+        this.movieType = movieType;
         this.startTime = startTime;
         this.price = price;
     }

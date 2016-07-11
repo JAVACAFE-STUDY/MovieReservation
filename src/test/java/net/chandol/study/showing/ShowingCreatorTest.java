@@ -1,8 +1,9 @@
 package net.chandol.study.showing;
 
 import net.chandol.study._config.dummy.DummyDataGenerator;
-import net.chandol.study.common.money.Money;
+import net.chandol.study.common.MoneyMatcher;
 import net.chandol.study.movie.Movie;
+import net.chandol.study.movie.MovieType;
 import net.chandol.study.theater.Theater;
 import org.junit.Before;
 import org.junit.Test;
@@ -41,10 +42,10 @@ public class ShowingCreatorTest {
         LocalDateTime startTime = LocalDateTime.of(2016, 7, 9, 4, 20);
 
         // when
-        Showing showing = showingCreator.create(theater, movie, startTime, Money.of(3000));
+        Showing showing = showingCreator.create(theater, movie, MovieType._2D, startTime);
 
         // then
-        assertThat(showing.getPrice(), is(Money.of(3000)));
+        assertThat(showing.getPrice(), MoneyMatcher.moneyIs(7000));
         assertThat(showing.getMovie(), is(movie));
         assertThat(showing.getTheater(), is(theater));
         assertThat(showing.getStartTime(), is(startTime));

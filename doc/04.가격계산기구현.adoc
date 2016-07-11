@@ -1,0 +1,128 @@
+= 가격계산기 구현하기
+
+영화가격을 만들어주는 로직을 구현하고자 한다. 대부분의 영화관은 시간이나 요일별, 그리고 영화의 타입별로 다른 가격을 책정하고 있다.
+
+가격은 경우에 따라서 변경될 수 있다. 예를 들어 신규 영화관이 오픈할 경우에 1000원을 할인한다와 같은 같은 여러 로직이 추가될 수 있을 것이다.
+
+처음에 객체대상이라고 예상했던 `가격 정책`은 여러개가 지정된다. 독립적인 가격정책만으론 가격을 정의할 수 없다. 그렇기 때문에 이러한 가격정책을 통합적으로 관리할 수 있는 상위객체 `가격생성기(PriceCalculator)`를 만들고 가격정책은 순차적으로 실행되도록 하는 것이 좋을 것 같다.
+
+정리하면 `PriceCalculator`는 가격을 결정하는`PriceRule`인터페이스의 구현체들을 가진 `List<PriceRule>` 을 소유하며, 이 가격정책을 순차적으로 순회하면서 가격이 설정되도록 한다.
+
+`PriceRule` 인터페이스는 다음과 같이 구성하였다.
+
+[source, java]
+----
+public interface PriceRule {
+    Money evaluate(Money money, Theater theater,Movie movie, LocalDateTime showingTime);
+}
+----
+
+가격정책인터페이스는 영화정보에서 어떠한 정보를 활용하여야 하는지 알 수 없다. 그렇기 때문에 위와 같이 가격에 영향을 끼치는 모든 정보를 기입하도록 하였다.
+
+그리고 이를 사용하는 `PriceCalulator`는 아래와 같이 구성하였다.
+
+[source, java]
+----
+public class PriceCalculator {
+    public Money calculate(Theater theater, Movie movie, LocalDateTime startTime) {
+        List<PriceRule> priceRules = getPriceRules();
+        Money money;
+        for (PriceRule rule : priceRules)
+            money = rule.evaluate(money, theater, movie, startTime);
+
+        return money;
+    }
+
+    private List<PriceRule> getPriceRules() {
+        return Arrays.asList(new DefaultPriceRule(), new AnotherPriceRule());
+    }
+}
+----
+
+=== 기본가격정책 만들어보기
+
+가장 기본적으로 사용될 기본가격정책부터 먼저 만들어보도록 하자. 기본 가격정책은 영화타입, 상영시간, 요일별로 가격을 만들게 된다.
+
+.영화 가격이 이렇게 세분화 되어있을 줄이야...
+image::03.상영(Showing)-024f1.png[]
+
+상영시간 + 영화타입을 기준으로 다음과 같이 가격을 정하도록 하자.
+
+주중(월-목)::
+* 조조(04:00 - 10:00)
+** 2D:6000 3D:8000 IMAX:10000 4DX:10000
+* 주간(10:00 - 22:00)
+** 2D:8000 3D:10000 IMAX:12000 4DX:12000
+* 야간(22:00 - 04:00)
+** 2D:7000 3D:9000 IMAX:11000 4DX:11000
+주말(금-일)::
+* 조조(05:00 - 9:00)
+** 2D:7000 3D:9000 IMAX:11000 4DX:11000
+* 주간(9:00 - 17:00)
+** 2D:9000 3D:11000 IMAX:12000 4DX:12000
+* 프라임(17:00 - 23:00)
+** 2D:10000 3D:12000 IMAX:14000 4DX:14000
+* 야간(23:00 - 04:00)
+** 2D:7000 3D:9000 IMAX:11000 4DX:11000
+
+테스트로 이를 옮겨보도록 하자.
+
+[source, java]
+----
+@Test
+public void evaluate() throws Exception {
+    //given
+    PriceRule priceRule = new DefaultPriceRule();
+    Movie movie = dummyMovie(MovieType.IMAX);
+    LocalDateTime startTime = LocalDateTime.of(2016, 7, 7, 20, 20);
+
+    //when
+    Money price = priceRule.evaluate(
+            Money.of(0), theater, movie, startTime
+    );
+
+    //then
+    assertThat(price, is(7000));
+}
+----
+
+영화가격을 가져오기 위해선 많은 사전정보가 필요할 것이다. 인터페이스에 영화정보, 상영시간, 영화관정보 등 가격에 영향을 끼칠법한 모든것을 입력해주어야 한다. 테스트 데이터를 만들어주는것 또한 쉽지 않으며(기본적으로 경우의 수가 많다.) 또한 각 경우의 수를 모두 테스트 케이스로 옮기기는 작업도 쉽지 않아 보인다. 이처럼 여러 정보들을 기반으로 어떤 값을 정하는 경우에는 Rule엔진이라는 것이 사용된다. 이를 사용하면 SQL문같은 문장을 통해서 간결하고, 알아보기 쉽게 로직을 작성할 수 있다. 무엇보다 지금은 컴파일타임에서 로직이 고정되고 변경이 불가능하지만, 룰엔진을 사용하면 동적으로 로직을 변경할 수 있게 된다. 지금 토이 프로젝트에서는 범위를 벗어나는 내용이므로 사용하지 않을 예정이다.
+
+위에서 보았듯이 가격정책은 기본적으로 많은 정보를 필요로 한다. 하지만 기본가격정책은 두가지 파라미터(시간, 영화타입)만으로도 적용이 가능하다. 기존 메서드를 override하는 `Money evaluate(LocalDateTime dateTime, MovieType type)`를 만들었다. 해당 메서드를 사용하면 쉽고 빠르게 테스트가 가능할 것이다.
+
+[source, java]
+----
+public class DefaultPriceRule implements PriceRule {
+    @Override
+    public Money evaluate(Money money, Theater theater, Movie movie, LocalDateTime showingTime){
+        return evaluate(movie.getType(), showingTime);
+    }
+
+    Money evaluate(LocalDateTime dateTime, MovieType type) {
+        // need implements
+        return null;
+    }
+}
+----
+
+`상영`을 생성시 영화타입을 빼먹었다는 것을 뒤늦게 알아차렸다. `영화`는 단지 상영가능한 타입만을 가지고 있다. Integration 테스트가 없어 한눈에 동작하는 모습을 보기 힘들다. 다음 챕터에서는 이러한 일이 생기지 않도록 화면도 함께 만들어나가도록 하자!
+
+=== 다시 시작
+
+급하게 패치 후 다시 테스트코드를 정비하였다.
+
+[source, java]
+----
+@Test
+public void evaluate() throws Exception {
+    // given
+    DefaultPriceRule rule = new DefaultPriceRule();
+    LocalDateTime startTime = LocalDateTime.of(2016, 7, 10, 10, 0);
+
+    // when
+    Money money = rule.evaluate(_2D, startTime);
+
+    // then
+    assertThat(money.getValue(), is(7000));
+}
+----
