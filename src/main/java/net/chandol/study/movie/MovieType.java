@@ -6,7 +6,7 @@ import static java.util.Arrays.stream;
 
 public enum MovieType {
     // 자바에서 이름앞에 숫자가 앞에 나오지 못함..ㅠㅠ
-    NORMAL("NORMAL"), IMAX("IMAX"), _3D("3D"), _4D("4D");
+    _2D("2D"), _3D("3D"), _4DX("4D"), IMAX("IMAX");
 
     String name;
 
