@@ -17,7 +17,7 @@ public class DefaultPriceRuleTest {
 
     @Test
     public void evaluate() throws Exception {
-        ruleEvaluate(_2D, MONDAY, 2, 7000);
+        ruleEvaluate(_2D, MONDAY, 2, 8000);
         ruleEvaluate(_2D, MONDAY, 4, 6000);
         ruleEvaluate(_2D, MONDAY, 18, 8000);
         ruleEvaluate(_2D, MONDAY, 23, 7000);
