@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 public class ShowingCreator {
     @Autowired PriceCalculator calculator;
 
-    @Autowired Showing.ShowingRepository showingRepository;
+    @Autowired ShowingRepository showingRepository;
     @Autowired ShowingSeatRepository seatRepository;
 
     // JPA와 연동되는 부분이라서 깔끔하게 만들긴 쉽지가 않음. ㅠㅠㅠ
