@@ -3,8 +3,7 @@ package net.chandol.study.e2e.sample;
 import net.chandol.study.e2e.CustomFluentTest;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 
 public class SampleIntegrationTest extends CustomFluentTest {
@@ -12,6 +11,6 @@ public class SampleIntegrationTest extends CustomFluentTest {
     @Test
     public void hasPageTitle() throws InterruptedException {
         goTo(serverUrl + "/index");
-        assertThat("Hello World!", is(title()));
+        assertThat("Hello World!").isEqualTo(title());
     }
 }

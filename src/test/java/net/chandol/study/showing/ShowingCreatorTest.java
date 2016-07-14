@@ -1,7 +1,7 @@
 package net.chandol.study.showing;
 
 import net.chandol.study._config.dummy.DummyDataGenerator;
-import net.chandol.study.common.MoneyMatcher;
+import net.chandol.study.common.money.Money;
 import net.chandol.study.movie.Movie;
 import net.chandol.study.movie.MovieType;
 import net.chandol.study.showing.dto.ShowingCreateRequest;
@@ -16,8 +16,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import static org.hamcrest.CoreMatchers.is;
-import static org.junit.Assert.assertThat;
+import static net.chandol.study._testhelper.ExtendedObjectAssert.objectAssertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -46,12 +46,14 @@ public class ShowingCreatorTest {
         Showing showing = showingCreator.create(new ShowingCreateRequest(theater, movie, MovieType._2D, startTime));
 
         // then
-        assertThat(showing.getPrice(), MoneyMatcher.moneyIs(7000));
-        assertThat(showing.getMovie(), is(movie));
-        assertThat(showing.getTheater(), is(theater));
-        assertThat(showing.getStartTime(), is(startTime));
+        objectAssertThat(showing)
+                .is("price", Money.of(7000))
+                .is("movie", movie)
+                .is("theater", theater)
+                .is("startTime", startTime);
 
-        assertThat(theater.getSeats().size(), is(theater.getSeats().size()));
+        assertThat(showing.getTheater()).asList()
+                .hasSize(theater.getSeats().size());
     }
 
 }
