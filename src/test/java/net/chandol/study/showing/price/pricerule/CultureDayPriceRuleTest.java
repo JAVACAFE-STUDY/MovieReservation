@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import java.time.LocalDateTime;
 
-import static net.chandol.study.common.MoneyMatcher.moneyIs;
-import static org.junit.Assert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Created by sejong on 2016. 7. 12..
@@ -22,7 +21,7 @@ public class CultureDayPriceRuleTest {
         Money normalPrice = rule.evaluate(Money.of(10000), LocalDateTime.of(2016, 7, 7, 9, 26));
 
         //then
-        assertThat(cultureDayPrice, moneyIs(5000));
-        assertThat(normalPrice, moneyIs(10000));
+        assertThat(cultureDayPrice).isEqualTo(Money.of(5000));
+        assertThat(normalPrice).isEqualTo(Money.of(10000));
     }
 }

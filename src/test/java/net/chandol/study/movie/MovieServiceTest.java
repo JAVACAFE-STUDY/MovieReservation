@@ -8,10 +8,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static net.chandol.study._config.dummy.DummyDataGenerator.getMovieCreateRequests;
-import static net.chandol.study.movie.MovieType._2D;
-import static net.chandol.study.movie.MovieType._3D;
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.assertThat;
+import static net.chandol.study._testhelper.ExtendedObjectAssert.objectAssertThat;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -27,9 +24,9 @@ public class MovieServiceTest {
         Movie movie = service.create(request);
 
         //then
-        assertThat(movie.getName(), is("WALL-E"));
-        assertThat(movie.getRunningTime(), is(104));
-        assertThat(movie.getDescription(), is(notNullValue()));
-        assertThat(movie.getAvailableMovieType(), hasItems(_2D, _3D));
+        objectAssertThat(movie)
+                .is("name", "WALL-E")
+                .is("runningTime", 104)
+                .hasFieldOrProperty("description");
     }
 }
