@@ -1,5 +1,6 @@
 = 영화 예매 시스템
 
+
 == 작성자
 
 Sejong Park <devsejong@gmail.com>
