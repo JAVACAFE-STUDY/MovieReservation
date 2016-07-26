@@ -21,6 +21,7 @@ TDD를 활용, 성장하는 객체지향 프로그램을 만들어 나갑니다.
 빌드 후 `net.chandol.study.Application`를 실행합니다.
 
 
+
 == Integration Test
 
 integration test를 위해서 셀레늄을 사용합니다. 이 테스트를 실행하기 전 다음과 같은 준비가 필요합니다.
