@@ -1,4 +1,4 @@
-package net.chandol.study.e2e;
+package net.chandol.study;
 
 import org.fluentlenium.core.ConditioalStartWebDriverFluentTest;
 import org.junit.Before;

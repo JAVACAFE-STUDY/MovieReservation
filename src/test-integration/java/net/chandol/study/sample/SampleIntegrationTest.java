@@ -1,6 +1,6 @@
-package net.chandol.study.e2e.sample;
+package net.chandol.study.sample;
 
-import net.chandol.study.e2e.CustomFluentTest;
+import net.chandol.study.CustomFluentTest;
 import org.junit.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
